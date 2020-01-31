@@ -265,7 +265,7 @@ class TranslateFilesCommand extends Command
         $data = [];
         foreach($to_be_translateds as $key => $to_be_translated){
             if ( is_array($to_be_translated) ) {
-                $this->skipMultidensional($to_be_translated, $already_translateds[$key], $locale);
+                $data[$key] = $this->skipMultidensional($to_be_translated, $already_translateds[$key], $locale);
             } else {
                 if ( isset($already_translateds[$key]) && $already_translateds[$key] != '' && !$this->force) {
                     $data[$key] = $already_translateds[$key];
@@ -273,8 +273,9 @@ class TranslateFilesCommand extends Command
                         $this->line('Exists Skipping -> ' . $to_be_translated . ' : ' . $data[$key]);
                     }
                     continue;
+                } else {                    
+                    $data[$key] = $this->translate_attribute($to_be_translated,$locale);
                 }
-                $data[$key] = $this->translate_attribute($to_be_translated,$locale);
             }
         }
         return $data;
