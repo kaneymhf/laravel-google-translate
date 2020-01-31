@@ -272,7 +272,7 @@ class TranslateFilesCommand extends Command
                     if ($this->verbose) {
                         $this->line('Exists Skipping -> ' . $to_be_translated . ' : ' . $data[$key]);
                     }
-                    continue;
+                    //continue;
                 } else {                    
                     $data[$key] = $this->translate_attribute($to_be_translated,$locale);
                 }
